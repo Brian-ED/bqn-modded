@@ -30,5 +30,5 @@ run ⇐ {𝕏ReCaseBQN} •ReBQN {
     "out"‿•Out
     "currenterror"‿•currentError
   ⟩
-  primitives⇐•primitives∾customPrimitives
+  primitives⇐{¬∘∊○(⊑¨)⟜𝕩⊸/•primitives}⊸∾customPrimitives
 }

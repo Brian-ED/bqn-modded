@@ -23,12 +23,12 @@ ReCaseBQN ← {
   (⌽⍉>symbolReplacements) ReplaceAll SwapCasing⌾((¬ignore)⊸/)𝕩
 }
 
-run ⇐ {𝕏ReCaseBQN} •ReBQN {
-  system⇐⟨
-    "import"‿{a←𝕨⊣⟨⟩ ⋄ ⟨𝕩, 𝕩, a⟩ •BQN ReCaseBQN •FChars𝕩}
-    "show"‿•Show
-    "out"‿•Out
-    "currenterror"‿•currentError
-  ⟩
-  primitives⇐{¬∘∊○(⊑¨)⟜𝕩⊸/•primitives}⊸∾customPrimitives
+Run ⇐ {path‿name‿args𝕊s:
+  x←•ReBQN {
+    system⇐⟨
+      "import"‿{a←𝕨⊣⟨⟩ ⋄ ⟨𝕩, 𝕩, a⟩ Run ReCaseBQN •FChars𝕩}
+    ⟩∾{𝕩⋈path‿name‿args⊸•BQN'•'∾𝕩}¨⟨"import"⟩(¬∘∊˜/⊢)•listsys
+    primitives⇐{¬∘∊○(⊑¨)⟜𝕩⊸/•primitives}⊸∾customPrimitives
+  }
+  X ReCaseBQN𝕩
 }

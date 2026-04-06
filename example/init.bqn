@@ -1,7 +1,10 @@
 
 m←⟨
-  ⟨"𝕨"‿"⍺" ⋄ "𝕩"‿"⍵"⟩ # Replaced symbols
-  ⟨'⍳'‿↕⟩             # New primitives
+  # Replaced symbols
+  ⟨ "𝕨"‿"⍺" ⋄ "𝕩"‿"⍵" ⋄ "𝕊"‿"∇" ⟩
+
+  # New primitives
+  ⟨'⍳'‿↕⟩
 ⟩ •Import "../bqnm.bqn"
 
 # Start with new primitives and switched casing

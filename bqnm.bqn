@@ -1,5 +1,6 @@
 ⟨symbolReplacements ⋄ customPrimitives⟩←•args
 
+# Copied from https://github.com/mlochbaum/bqn-libs/blob/4df4f8ca1356508d27b03131350e25c19114c7cd/strings.bqn#L49-L62
 # Replace each instance of a string in old with the corresponding
 # string in new.
 # Instances are non-overlapping, and earlier ones take precedence.
@@ -14,9 +15,6 @@ ReplaceAll ← {
   insert ← (new⊏˜⊏⟜match)⊸(≠¨⊸/⋈∾∘⊣) / (0⊸<∧»⊸≤) cont
   ⍋⊸⊏´ keep ∾¨ insert
 }
-
-
-
 
 ReCaseBQN ← {
   ignore←«(»»)⊸∧'''=𝕩

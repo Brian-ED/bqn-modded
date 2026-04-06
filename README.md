@@ -1,6 +1,9 @@
 # BQN Modded
-This is a version of BQN, currently a simple •ReBQN with a bit of pre-processing, that changes a few stylistic stuff.
+This is a library meant to mod BQN, currently a simple •ReBQN with a bit of pre-processing. It changes stylistic stuff. It's only compatable with the CBQN implementation.
 1. The naming of function-role and value-role swapped to become "variable" (lowercase) and "Function" (uppercase).
-2. 𝕨, 𝕩, 𝕎, 𝕏, 𝕗, etc are all changed to ⍺⍵...
+2. 𝕨, 𝕩, 𝕎, 𝕏, 𝕗, · etc can all be changed with the symbol replacements. It's general so can also replace `·`.
 
-You use this as a library for BQN. See in `./example` folder.
+You use this as a library. See in `./example` folder for a concrete example.
+Here's a short explanation.
+`./example/init.bqn` is a normal, unmodified BQN. It imports `./mbqn` like `m←⟨"𝕨⍺"‿"𝕩⍵" ⋄ ⟨'⍳'‿↕⟩⟩ •Import "../bqnm.bqn"`. `•Import` is given 2 arguments, symbol replacements and new primitives.
+`m.Run` is now defined, and can be called like `m.Run •FChars "main.bqn"` to run a main file. All imports it does also inherit the modifications.

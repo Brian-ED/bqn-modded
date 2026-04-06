@@ -4,6 +4,16 @@ This is a library meant to mod BQN, currently a simple •ReBQN with a bit of pr
 2. 𝕨, 𝕩, 𝕎, 𝕏, 𝕗, · etc can all be changed with the symbol replacements. It's general so can also replace `·`.
 
 You use this as a library. See in `./example` folder for a concrete example.
-Here's a short explanation.
-`./example/init.bqn` is a normal, unmodified BQN. It imports `./mbqn` like `m←⟨"𝕨⍺"‿"𝕩⍵" ⋄ ⟨'⍳'‿↕⟩⟩ •Import "../bqnm.bqn"`. `•Import` is given 2 arguments, symbol replacements and new primitives.
-`m.Run` is now defined, and can be called like `m.Run •FChars "main.bqn"` to run a main file. All imports it does also inherit the modifications.
+Here's a short explanation.  
+`./example/init.bqn` is a normal, unmodified BQN.  
+It imports `./mbqn`:
+```bqn
+m←⟨
+  ⟨"⍺"‿"𝕨" ⋄ "⍵"‿"𝕩"⟩
+  ⟨'⍳'‿↕⟩
+⟩ •Import "../bqnm.bqn"
+```
+`•Import` is given 2 arguments, replacements is the first and new primitives is the second.  
+Replacements is a list of pairs, where each pair contains what's wanted in the first position and what it's replacing in the second one.  
+New primitives is a list of pairs, where each pair contains a symbol for a primitive, and the function that it represents.
+`m.Run` is now imported, and can be called like `m.Run •FChars "main.bqn"` to run a main file. All imports it does also inherit the modifications.

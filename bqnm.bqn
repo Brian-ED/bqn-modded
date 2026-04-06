@@ -1,10 +1,28 @@
 ⟨symbolReplacements ⋄ customPrimitives⟩←•args
 
+# Replace each instance of a string in old with the corresponding
+# string in new.
+# Instances are non-overlapping, and earlier ones take precedence.
+ReplaceAll ← {
+  ⟨old,new⟩ 𝕊 str: [old,new] 𝕊 str ; # Support nested or two-row 𝕨
+  [old,new] 𝕊 str:
+  "ReplaceAll: Can't replace empty" ! ∧´0<≠¨old
+  l ← ≠old
+  match ← 1-˜ (l+1)|⌊´ (↕⊸-l) × old (1<≠∘⊣)◶⟨⊑⊸=,≠∘⊢↑⍷⟩¨ <str
+  cont ← (-⟜1⌈≤⟜1×⊢)` match ⊏ (≠¨old)∾0
+  keep ← ⋈⟜(⊏⟜str) / 0=cont
+  insert ← (new⊏˜⊏⟜match)⊸(≠¨⊸/⋈∾∘⊣) / (0⊸<∧»⊸≤) cont
+  ⍋⊸⊏´ keep ∾¨ insert
+}
+
+
+
+
 ReCaseBQN ← {
   ignore←«(»»)⊸∧'''=𝕩
   ignore∨↩ 2|+`(¬ignore)×'"'=𝕩
   SwapCasing ← +⟜(-´32×1="A["⊸⍋⋈"a{"⊸⍋)
-  symbolReplacements {y0‿x0←𝕨⋄ [by⋄bx]←y0‿x0=⌜𝕩 ⋄ y0¨⌾(bx⊸/)x0¨⌾(by⊸/)𝕩}´˜ SwapCasing⌾((¬ignore)⊸/)𝕩
+  (⌽⍉>symbolReplacements) ReplaceAll SwapCasing⌾((¬ignore)⊸/)𝕩
 }
 
 run ⇐ {𝕏ReCaseBQN} •ReBQN {
